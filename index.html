@@ -26,7 +26,9 @@
 .ui-yellow .burger span {
   background: var(--black);
 }
-
+.mobile-menu a:not(:last-child) {
+  border-bottom: 1px solid #222;
+}
     * {
       box-sizing: border-box;
       margin: 0;
@@ -98,16 +100,20 @@
     }
 
     /* DROPDOWN MENU */
-    .mobile-menu {
-      position: absolute;
-      top: 70px;
-      left: 40px;
-      background: var(--black);
-      min-width: 220px;
-      display: none;
-      flex-direction: column;
-      z-index: 10;
-    }
+.mobile-menu {
+  position: absolute;
+  top: 70px;
+  left: 40px;
+  background: var(--black);
+  min-width: 220px;
+  display: none;
+  flex-direction: column;
+  z-index: 100;
+
+  border: 1px solid #333;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
 
     .mobile-menu a {
       padding: 14px 16px;
