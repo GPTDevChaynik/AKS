@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,52 +25,107 @@
       color: var(--black);
     }
 
-    /* HEADER */
+    /* ===== HEADER ===== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
       border-bottom: 1px solid #eaeaea;
+      position: relative;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
     .logo {
       font-weight: 700;
       font-size: 20px;
+      text-decoration: none;
+      color: var(--black);
     }
 
-    nav a {
-      margin-left: 24px;
+    /* BURGER */
+    .burger {
+      width: 24px;
+      height: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .burger span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: var(--black);
+    }
+
+    /* RIGHT MENU */
+    .header-right {
+      display: flex;
+      gap: 24px;
+    }
+
+    .header-link {
       text-decoration: none;
       color: var(--black);
       font-size: 14px;
     }
 
-    nav a:hover {
+    .header-link:hover {
       color: var(--yellow);
     }
 
-    /* HERO */
+    /* DROPDOWN MENU */
+    .mobile-menu {
+      position: absolute;
+      top: 70px;
+      left: 40px;
+      background: var(--black);
+      min-width: 220px;
+      display: none;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .mobile-menu a {
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--white);
+      font-size: 14px;
+    }
+
+    .mobile-menu a:hover {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    /* ===== HERO ===== */
     .hero {
       background: var(--black);
       color: var(--white);
       padding: 80px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
 
-    .hero-text {
-      max-width: 500px;
-    }
-
-    .hero-text h1 {
+    .hero h1 {
       font-size: 42px;
       margin-bottom: 20px;
     }
 
-    .hero-text p {
+    .hero p {
       font-size: 16px;
+      max-width: 500px;
       margin-bottom: 32px;
       opacity: 0.9;
     }
@@ -88,7 +143,7 @@
       opacity: 0.9;
     }
 
-    /* PRODUCTS */
+    /* ===== PRODUCTS ===== */
     .section {
       padding: 60px 40px;
     }
@@ -107,18 +162,17 @@
     .product-card {
       border: 1px solid #eaeaea;
       padding: 16px;
-      background: var(--white);
     }
 
     .product-image {
       width: 100%;
       height: 200px;
       background: var(--gray);
-      margin-bottom: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #999;
+      margin-bottom: 16px;
       font-size: 14px;
     }
 
@@ -133,12 +187,12 @@
     }
 
     .product-btn {
+      display: block;
+      text-align: center;
       background: var(--black);
       color: var(--white);
       padding: 10px;
-      text-align: center;
       text-decoration: none;
-      display: block;
       font-size: 14px;
     }
 
@@ -147,35 +201,47 @@
       color: var(--black);
     }
 
-    /* FOOTER */
+    /* ===== FOOTER ===== */
     footer {
-      padding: 40px;
       background: var(--black);
       color: var(--white);
+      padding: 40px;
       font-size: 14px;
     }
   </style>
 </head>
+
 <body>
 
   <!-- HEADER -->
   <header>
-    <div class="logo">AKS Мобільні Аксесуари</div>
-    <nav>
+    <div class="header-left">
+      <button class="burger" id="burgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <a href="/" class="logo">AKS Мобільні Аксесуари</a>
+    </div>
+
+    <div class="header-right">
+      <a href="#" class="header-link">Замовлення</a>
+      <a href="#" class="header-link">Контакти</a>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
       <a href="#">Чохли</a>
       <a href="#">Кабелі</a>
       <a href="#">Зарядні блоки</a>
-      <a href="#">Контакти</a>
-    </nav>
+    </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-text">
-      <h1>Аксесуари для смартфонів</h1>
-      <p>Чохли, кабелі та корисні дрібниці. Без зайвого — тільки потрібне.</p>
-      <a href="#" class="btn">Переглянути асортимент</a>
-    </div>
+    <h1>Аксесуари для смартфонів</h1>
+    <p>Чохли, кабелі та корисні дрібниці. Без зайвого — тільки потрібне.</p>
+    <a href="#" class="btn">Переглянути асортимент</a>
   </section>
 
   <!-- PRODUCTS -->
@@ -199,7 +265,7 @@
 
       <div class="product-card">
         <div class="product-image">Фото товару</div>
-        <div class="product-title">Зарядка 20W</div>
+        <div class="product-title">Зарядний блок 20W</div>
         <div class="product-price">899 ₴</div>
         <a href="#" class="product-btn">Придбати</a>
       </div>
@@ -208,8 +274,18 @@
 
   <!-- FOOTER -->
   <footer>
-    © 2026 Accessories Store
+    © 2026 AKS Мобільні Аксесуари
   </footer>
+
+  <!-- JS -->
+  <script>
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>
