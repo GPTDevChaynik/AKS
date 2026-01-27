@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AKS Мобільні Аксесуари</title>
+
+  <style>
+    :root {
+      --black: #000;
+      --white: #fff;
+      --yellow: #FFD400;
+      --gray: #f5f5f5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: var(--black);
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--yellow);
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--black);
+      color: var(--white);
+      padding: 80px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero-text {
+      max-width: 500px;
+    }
+
+    .hero-text h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 16px;
+      margin-bottom: 32px;
+      opacity: 0.9;
+    }
+
+    .btn {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 14px 28px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    /* PRODUCTS */
+    .section {
+      padding: 60px 40px;
+    }
+
+    .section h2 {
+      font-size: 28px;
+      margin-bottom: 32px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      border: 1px solid #eaeaea;
+      padding: 16px;
+      background: var(--white);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      background: var(--gray);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 14px;
+    }
+
+    .product-title {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .product-btn {
+      background: var(--black);
+      color: var(--white);
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .product-btn:hover {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">ACCESSORIES</div>
+    <nav>
+      <a href="#">Чохли</a>
+      <a href="#">Кабелі</a>
+      <a href="#">Зарядні блоки</a>
+      <a href="#">Контакти</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Аксесуари для смартфонів</h1>
+      <p>Чохли, кабелі та корисні дрібниці. Без зайвого — тільки потрібне.</p>
+      <a href="#" class="btn">Переглянути асортимент</a>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="section">
+    <h2>Популярні товари</h2>
+
+    <div class="products">
+      <div class="product-card">
+        <div class="product-image">Фото товару</div>
+        <div class="product-title">Чохол iPhone 15</div>
+        <div class="product-price">799 ₴</div>
+        <a href="#" class="product-btn">Придбати</a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">Фото товару</div>
+        <div class="product-title">Кабель USB-C</div>
+        <div class="product-price">399 ₴</div>
+        <a href="#" class="product-btn">Придбати</a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">Фото товару</div>
+        <div class="product-title">Зарядка 20W</div>
+        <div class="product-price">899 ₴</div>
+        <a href="#" class="product-btn">Придбати</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Accessories Store
+  </footer>
+
+</body>
+</html>
