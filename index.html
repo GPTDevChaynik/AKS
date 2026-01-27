@@ -12,6 +12,20 @@
       --yellow: #FFD400;
       --gray: #f5f5f5;
     }
+.ui-yellow {
+  background: var(--yellow);
+  color: var(--black);
+  border-radius: 12px;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.ui-yellow .burger span {
+  background: var(--black);
+}
 
     * {
       box-sizing: border-box;
@@ -215,7 +229,7 @@
 
   <!-- HEADER -->
   <header>
-    <div class="header-left">
+    <div class="header-left ui-yellow">
       <button class="burger" id="burgerBtn">
         <span></span>
         <span></span>
@@ -241,7 +255,7 @@
   <section class="hero">
     <h1>Аксесуари для смартфонів</h1>
     <p>Чохли, кабелі та корисні дрібниці. Без зайвого — тільки потрібне.</p>
-    <a href="#" class="btn">Переглянути асортимент</a>
+    <a href="#" class="btn ui-yellow">Переглянути асортимент</a>
   </section>
 
   <!-- PRODUCTS -->
@@ -253,21 +267,21 @@
         <div class="product-image">Фото товару</div>
         <div class="product-title">Чохол iPhone 15</div>
         <div class="product-price">799 ₴</div>
-        <a href="#" class="product-btn">Придбати</a>
+        <a href="#" class="product-btn ui-yellow">Придбати</a>
       </div>
 
       <div class="product-card">
         <div class="product-image">Фото товару</div>
         <div class="product-title">Кабель USB-C</div>
         <div class="product-price">399 ₴</div>
-        <a href="#" class="product-btn">Придбати</a>
+        <a href="#" class="product-btn ui-yellow">Придбати</a>
       </div>
 
       <div class="product-card">
         <div class="product-image">Фото товару</div>
         <div class="product-title">Зарядний блок 20W</div>
         <div class="product-price">899 ₴</div>
-        <a href="#" class="product-btn">Придбати</a>
+       <a href="#" class="product-btn ui-yellow">Придбати</a>
       </div>
     </div>
   </section>
