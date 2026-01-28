@@ -39,15 +39,21 @@
     }
 
     /* ===== HEADER ===== */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      border-bottom: 1px solid #eaeaea;
-      position: relative;
-      background: var(--white);
-    }
+  header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 40px;
+  border-bottom: 1px solid #eaeaea;
+  background: var(--white);
+  z-index: 1000;
+}
 
     .header-left {
       display: flex;
@@ -152,6 +158,7 @@
       background: var(--black);
       color: var(--white);
       padding: 80px 40px;
+      margin-top: 88px;
     }
 
     .hero h1 {
@@ -285,14 +292,29 @@
   </footer>
 
   <!-- JS -->
-  <script>
-    const burgerBtn = document.getElementById('burgerBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
+ <script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const headerLeft = document.querySelector('.header-left');
 
-    burgerBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-    });
-  </script>
+  burgerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    mobileMenu.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (
+      !mobileMenu.contains(e.target) &&
+      !headerLeft.contains(e.target)
+    ) {
+      mobileMenu.classList.remove('active');
+    }
+  });
+
+  window.addEventListener('scroll', () => {
+    mobileMenu.classList.remove('active');
+  });
+</script>
 
 </body>
 </html>
