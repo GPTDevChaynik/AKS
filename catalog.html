@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Чохли — AKS Мобільні Аксесуари</title>
+  <title>Каталог — AKS Мобільні Аксесуари</title>
 
   <style>
     :root {
@@ -20,7 +20,6 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
-    /* ===== BODY ===== */
     body {
       background: var(--white);
       color: var(--black);
@@ -103,7 +102,7 @@
       color: var(--yellow);
     }
 
-    /* ===== DROPDOWN MENU ===== */
+    /* ===== DROPDOWN ===== */
     .mobile-menu {
       position: absolute;
       top: 70px;
@@ -133,59 +132,27 @@
       border-bottom: 1px solid #eee;
     }
 
-    .mobile-menu a:hover,
-    .mobile-menu a.active {
+    .mobile-menu a:hover {
       background: var(--yellow);
-      color: var(--black);
     }
 
-    /* ===== CATEGORY ===== */
+    /* ===== CATALOG ===== */
     main {
       flex: 1;
     }
 
-    .category {
-      padding: 40px 40px 60px;
+    .catalog {
+      padding: 40px;
     }
 
-    .category h1 {
+    .catalog h1 {
       font-size: 32px;
       margin-bottom: 12px;
     }
 
-    .category p {
+    .catalog p {
       color: #555;
-      margin-bottom: 32px;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 24px;
-    }
-
-    .product-card {
-      border: 1px solid #eaeaea;
-      padding: 16px;
-    }
-
-    .product-image {
-      height: 200px;
-      background: var(--gray);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-      margin-bottom: 16px;
-    }
-
-    .product-title {
-      margin-bottom: 8px;
-    }
-
-    .product-price {
-      font-weight: 700;
-      margin-bottom: 12px;
+      max-width: 600px;
     }
 
     /* ===== FOOTER ===== */
@@ -215,32 +182,20 @@
   </div>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="category.html" class="active">Чохли</a>
-    <a href="category-cables.html">Кабелі</a>
-    <a href="category-chargers.html">Зарядні блоки</a>
+    <a href="catalog.html">Каталог</a>
+    <a href="cases.html">Чохли</a>
+    <a href="cables.html">Кабелі</a>
+    <a href="chargers.html">Зарядні блоки</a>
   </div>
 </header>
 
 <main>
-  <section class="category">
-    <h1>Чохли</h1>
-    <p>Захист та стиль для вашого смартфона</p>
-
-    <div class="products">
-      <div class="product-card">
-        <div class="product-image">Фото товару</div>
-        <div class="product-title">Чохол iPhone 15</div>
-        <div class="product-price">799 ₴</div>
-        <a href="product.html" class="ui-yellow">Придбати</a>
-      </div>
-
-      <div class="product-card">
-        <div class="product-image">Фото товару</div>
-        <div class="product-title">Силіконовий чохол</div>
-        <div class="product-price">499 ₴</div>
-        <a href="product.html" class="ui-yellow">Придбати</a>
-      </div>
-    </div>
+  <section class="catalog">
+    <h1>Каталог</h1>
+    <p>
+      Тут скоро зʼявляться категорії та добірки товарів.
+      Починаємо з бази — далі буде більше.
+    </p>
   </section>
 </main>
 
