@@ -12,55 +12,30 @@
       --yellow: #FFD400;
       --gray: #f5f5f5;
     }
-.ui-yellow {
-  background: var(--yellow);
-  color: var(--black);
-  border-radius: 12px;
-  padding: 10px 16px;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-}
-.ui-yellow .burger span {
-  background: var(--black);
-}
-.mobile-menu a:not(:last-child) {
-  border-bottom: 1px solid #222;
-}
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: Arial, Helvetica, sans-serif;
     }
-/* FIX DROPDOWN HOVER SHAPE */
-.mobile-menu a {
-  position: relative;
-}
 
-/* скругление для первого пункта */
-.mobile-menu a:first-child:hover {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-/* скругление для последнего пункта */
-.mobile-menu a:last-child:hover {
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
-/* усиленный hover */
-.mobile-menu a:hover {
-  background: var(--yellow);
-  color: var(--black);
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15);
-}
     body {
       background: var(--white);
       color: var(--black);
+    }
+
+    /* ===== UI HELPERS ===== */
+    .ui-yellow {
+      background: var(--yellow);
+      color: var(--black);
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
     }
 
     /* ===== HEADER ===== */
@@ -71,6 +46,7 @@
       padding: 20px 40px;
       border-bottom: 1px solid #eaeaea;
       position: relative;
+      background: var(--white);
     }
 
     .header-left {
@@ -80,16 +56,15 @@
     }
 
     .logo {
-      font-weight: 700;
-      font-size: 20px;
+      font-size: 18px;
       text-decoration: none;
       color: var(--black);
     }
 
     /* BURGER */
     .burger {
-      width: 24px;
-      height: 18px;
+      width: 22px;
+      height: 16px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -99,13 +74,12 @@
     }
 
     .burger span {
-      display: block;
       height: 2px;
       width: 100%;
       background: var(--black);
+      display: block;
     }
 
-    /* RIGHT MENU */
     .header-right {
       display: flex;
       gap: 24px;
@@ -121,27 +95,41 @@
       color: var(--yellow);
     }
 
-    /* DROPDOWN MENU */
-.mobile-menu {
-  position: absolute;
-  top: 70px;
-  left: 40px;
-  background: var(--black);
-  min-width: 220px;
-  display: none;
-  flex-direction: column;
-  z-index: 100;
+    /* ===== DROPDOWN MENU (VARIANT 1) ===== */
+    .mobile-menu {
+      position: absolute;
+      top: 70px;
+      left: 40px;
+      background: var(--white);
+      min-width: 220px;
+      display: none;
+      flex-direction: column;
+      z-index: 100;
 
-  border: 1px solid #333;
-  border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-}
+      border-radius: 12px;
+      border: 1px solid #eaeaea;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .mobile-menu a {
       padding: 14px 16px;
       text-decoration: none;
-      color: var(--white);
+      color: var(--black);
       font-size: 14px;
+    }
+
+    .mobile-menu a:not(:last-child) {
+      border-bottom: 1px solid #eee;
     }
 
     .mobile-menu a:hover {
@@ -149,8 +137,14 @@
       color: var(--black);
     }
 
-    .mobile-menu.active {
-      display: flex;
+    .mobile-menu a:first-child:hover {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    .mobile-menu a:last-child:hover {
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
     }
 
     /* ===== HERO ===== */
@@ -167,21 +161,8 @@
 
     .hero p {
       font-size: 16px;
-      max-width: 500px;
+      max-width: 520px;
       margin-bottom: 32px;
-      opacity: 0.9;
-    }
-
-    .btn {
-      background: var(--yellow);
-      color: var(--black);
-      padding: 14px 28px;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-block;
-    }
-
-    .btn:hover {
       opacity: 0.9;
     }
 
@@ -228,21 +209,6 @@
       margin-bottom: 12px;
     }
 
-    .product-btn {
-      display: block;
-      text-align: center;
-      background: var(--black);
-      color: var(--white);
-      padding: 10px;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .product-btn:hover {
-      background: var(--yellow);
-      color: var(--black);
-    }
-
     /* ===== FOOTER ===== */
     footer {
       background: var(--black);
@@ -263,7 +229,6 @@
         <span></span>
         <span></span>
       </button>
-
       <a href="/" class="logo">AKS Мобільні Аксесуари</a>
     </div>
 
@@ -283,7 +248,7 @@
   <section class="hero">
     <h1>Аксесуари для смартфонів</h1>
     <p>Чохли, кабелі та корисні дрібниці. Без зайвого — тільки потрібне.</p>
-    <a href="#" class="btn ui-yellow">Переглянути асортимент</a>
+    <a href="#" class="ui-yellow">Переглянути асортимент</a>
   </section>
 
   <!-- PRODUCTS -->
@@ -295,21 +260,21 @@
         <div class="product-image">Фото товару</div>
         <div class="product-title">Чохол iPhone 15</div>
         <div class="product-price">799 ₴</div>
-        <a href="#" class="product-btn ui-yellow">Придбати</a>
+        <a href="#" class="ui-yellow">Придбати</a>
       </div>
 
       <div class="product-card">
         <div class="product-image">Фото товару</div>
         <div class="product-title">Кабель USB-C</div>
         <div class="product-price">399 ₴</div>
-        <a href="#" class="product-btn ui-yellow">Придбати</a>
+        <a href="#" class="ui-yellow">Придбати</a>
       </div>
 
       <div class="product-card">
         <div class="product-image">Фото товару</div>
         <div class="product-title">Зарядний блок 20W</div>
         <div class="product-price">899 ₴</div>
-       <a href="#" class="product-btn ui-yellow">Придбати</a>
+        <a href="#" class="ui-yellow">Придбати</a>
       </div>
     </div>
   </section>
