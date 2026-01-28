@@ -23,9 +23,10 @@
     body {
       background: var(--white);
       color: var(--black);
+      padding-top: 88px; /* важно: компенсация фиксированного header */
     }
 
-    /* ===== UI HELPERS ===== */
+    /* ===== UI ===== */
     .ui-yellow {
       background: var(--yellow);
       color: var(--black);
@@ -36,23 +37,22 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
+      cursor: pointer;
     }
 
     /* ===== HEADER ===== */
-  header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 20px 40px;
-  background: var(--white);
-  z-index: 1000;
-}
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: var(--white);
+      z-index: 1000;
+    }
 
     .header-left {
       display: flex;
@@ -66,7 +66,6 @@
       color: var(--black);
     }
 
-    /* BURGER */
     .burger {
       width: 22px;
       height: 16px;
@@ -82,7 +81,6 @@
       height: 2px;
       width: 100%;
       background: var(--black);
-      display: block;
     }
 
     .header-right {
@@ -100,7 +98,7 @@
       color: var(--yellow);
     }
 
-    /* ===== DROPDOWN MENU (VARIANT 1) ===== */
+    /* ===== DROPDOWN MENU ===== */
     .mobile-menu {
       position: absolute;
       top: 70px;
@@ -113,7 +111,7 @@
 
       border-radius: 12px;
       border: 1px solid #eaeaea;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
 
       opacity: 0;
       transform: translateY(-6px);
@@ -157,7 +155,6 @@
       background: var(--black);
       color: var(--white);
       padding: 80px 40px;
-      margin-top: 120px;
     }
 
     .hero h1 {
@@ -227,71 +224,52 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="header-left ui-yellow">
-      <button class="burger" id="burgerBtn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <a href="/" class="logo">AKS Мобільні Аксесуари</a>
+<header>
+  <div class="header-left ui-yellow">
+    <button class="burger" id="burgerBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <a href="index.html" class="logo">AKS Мобільні Аксесуари</a>
+  </div>
+
+  <div class="header-right">
+    <a href="#" class="header-link">Замовлення</a>
+    <a href="#" class="header-link">Контакти</a>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="category.html">Чохли</a>
+    <a href="category.html">Кабелі</a>
+    <a href="category.html">Зарядні блоки</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Аксесуари для смартфонів</h1>
+  <p>Чохли, кабелі та корисні дрібниці. Без зайвого — тільки потрібне.</p>
+  <a href="category.html" class="ui-yellow">Переглянути асортимент</a>
+</section>
+
+<section class="section">
+  <h2>Популярні товари</h2>
+
+  <div class="products">
+    <div class="product-card">
+      <div class="product-image">Фото товару</div>
+      <div class="product-title">Чохол iPhone 15</div>
+      <div class="product-price">799 ₴</div>
+      <a href="category.html" class="ui-yellow">До каталогу</a>
     </div>
+  </div>
+</section>
 
-    <div class="header-right">
-      <a href="#" class="header-link">Замовлення</a>
-      <a href="#" class="header-link">Контакти</a>
-    </div>
+<footer>
+  © 2026 AKS Мобільні Аксесуари
+</footer>
 
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#">Чохли</a>
-      <a href="#">Кабелі</a>
-      <a href="#">Зарядні блоки</a>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Аксесуари для смартфонів</h1>
-    <p>Чохли, кабелі та корисні дрібниці. Без зайвого — тільки потрібне.</p>
-    <href="category.html" class="ui-yellow">Переглянути асортимент</a>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section class="section">
-    <h2>Популярні товари</h2>
-
-    <div class="products">
-      <div class="product-card">
-        <div class="product-image">Фото товару</div>
-        <div class="product-title">Чохол iPhone 15</div>
-        <div class="product-price">799 ₴</div>
-        <a href="#" class="ui-yellow">Придбати</a>
-      </div>
-
-      <div class="product-card">
-        <div class="product-image">Фото товару</div>
-        <div class="product-title">Кабель USB-C</div>
-        <div class="product-price">399 ₴</div>
-        <a href="#" class="ui-yellow">Придбати</a>
-      </div>
-
-      <div class="product-card">
-        <div class="product-image">Фото товару</div>
-        <div class="product-title">Зарядний блок 20W</div>
-        <div class="product-price">899 ₴</div>
-        <a href="#" class="ui-yellow">Придбати</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    © 2026 AKS Мобільні Аксесуари
-  </footer>
-
-  <!-- JS -->
- <script>
+<script>
   const burgerBtn = document.getElementById('burgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const headerLeft = document.querySelector('.header-left');
@@ -302,10 +280,7 @@
   });
 
   document.addEventListener('click', (e) => {
-    if (
-      !mobileMenu.contains(e.target) &&
-      !headerLeft.contains(e.target)
-    ) {
+    if (!mobileMenu.contains(e.target) && !headerLeft.contains(e.target)) {
       mobileMenu.classList.remove('active');
     }
   });
