@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Зарядні блоки — AKS</title>
+
+  <style>
+    :root {
+      --black: #000;
+      --white: #fff;
+      --yellow: #FFD400;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      padding-top: 88px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ui-yellow {
+      background: var(--yellow);
+      color: var(--black);
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--white);
+      z-index: 1000;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      text-decoration: none;
+      color: var(--black);
+      font-size: 18px;
+    }
+
+    .burger {
+      width: 22px;
+      height: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .burger span {
+      height: 2px;
+      background: var(--black);
+    }
+
+    .header-right {
+      display: flex;
+      gap: 24px;
+    }
+
+    .header-link {
+      text-decoration: none;
+      color: var(--black);
+      font-size: 14px;
+    }
+
+    .header-link:hover {
+      color: var(--yellow);
+    }
+
+    .mobile-menu {
+      position: absolute;
+      top: 70px;
+      left: 40px;
+      background: var(--white);
+      border: 1px solid #eaeaea;
+      border-radius: 12px;
+      min-width: 220px;
+      display: none;
+      flex-direction: column;
+      z-index: 100;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    .mobile-menu a:not(:last-child) {
+      border-bottom: 1px solid #eee;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active {
+      background: var(--yellow);
+    }
+
+    main {
+      flex: 1;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: #555;
+    }
+
+    footer {
+      margin-top: auto;
+      background: var(--black);
+      color: var(--white);
+      padding: 40px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-left ui-yellow">
+    <button class="burger" id="burgerBtn">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">AKS</a>
+  </div>
+
+  <div class="header-right">
+    <a href="#" class="header-link">Замовлення</a>
+    <a href="#" class="header-link">Контакти</a>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="catalog.html">Каталог</a>
+    <a href="cases.html">Чохли</a>
+    <a href="cables.html">Кабелі</a>
+    <a href="chargers.html" class="active">Зарядні блоки</a>
+  </div>
+</header>
+
+<main>
+  <h1>Зарядні блоки</h1>
+  <p>Сторінка в розробці. Тут зʼявляться зарядні блоки та адаптери.</p>
+</main>
+
+<footer>
+  © 2026 AKS
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const headerLeft = document.querySelector('.header-left');
+
+  burgerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    mobileMenu.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !headerLeft.contains(e.target)) {
+      mobileMenu.classList.remove('active');
+    }
+  });
+</script>
+
+</body>
+</html>
