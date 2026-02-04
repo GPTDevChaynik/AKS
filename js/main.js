@@ -1,6 +1,6 @@
-// ===== BURGER MENU =====
-
 document.addEventListener("DOMContentLoaded", () => {
+
+  // ===== BURGER MENU =====
 
   const burgerBtn = document.getElementById("burgerBtn");
   const mobileMenu = document.getElementById("mobileMenu");
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
 
   // ===== FADE-IN ANIMATION =====
 
@@ -47,12 +48,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
+  // ===== LOAD PRODUCTS FROM GOOGLE SHEET =====
+
+  loadProducts();
+
 });
-// ===== LOAD PRODUCTS FROM GOOGLE SHEET =====
+
+
+// ===== PRODUCTS LOADER =====
 
 async function loadProducts() {
 
-  const url = "https://opensheet.elk.sh/1o5t26He2DzTweYeleXOGiDjlU4Jkx896f95VUHVgS8U/Test+Sheet";
+  const url = "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
 
   try {
 
@@ -72,7 +80,7 @@ async function loadProducts() {
 
       card.innerHTML = `
         <div class="product-image">
-          <img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;">
+          <img src="${product.image}" alt="${product.name}">
         </div>
 
         <div class="product-title">
@@ -97,5 +105,3 @@ async function loadProducts() {
   }
 
 }
-
-loadProducts();
