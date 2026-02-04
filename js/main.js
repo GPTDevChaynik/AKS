@@ -1,46 +1,50 @@
-alert("JS works");
 // ===== BURGER MENU =====
 
-const burgerBtn = document.getElementById('burgerBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const headerLeft = document.querySelector('.header-left');
+document.addEventListener("DOMContentLoaded", () => {
 
-if (burgerBtn && mobileMenu) {
+  const burgerBtn = document.getElementById("burgerBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const headerLeft = document.querySelector(".header-left");
 
-  burgerBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    mobileMenu.classList.toggle('active');
-  });
+  if (burgerBtn && mobileMenu) {
 
-  document.addEventListener('click', (e) => {
-    if (
-      !mobileMenu.contains(e.target) &&
-      !headerLeft.contains(e.target)
-    ) {
-      mobileMenu.classList.remove('active');
-    }
-  });
+    burgerBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.toggle("active");
+    });
 
-}
-
-
-// ===== FADE-IN ANIMATION =====
-
-const fadeObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, 150);
+    document.addEventListener("click", (e) => {
+      if (
+        !mobileMenu.contains(e.target) &&
+        !headerLeft.contains(e.target)
+      ) {
+        mobileMenu.classList.remove("active");
       }
     });
-  },
-  {
-    threshold: 0.15,
   }
-);
 
-document.querySelectorAll('.fade-in').forEach((el) => {
-  fadeObserver.observe(el);
+  // ===== FADE-IN ANIMATION =====
+
+  const fadeItems = document.querySelectorAll(".fade-in");
+
+  if (fadeItems.length > 0) {
+
+    const fadeObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    fadeItems.forEach((el) => {
+      fadeObserver.observe(el);
+    });
+  }
+
 });
