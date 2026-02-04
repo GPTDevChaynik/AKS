@@ -1,4 +1,4 @@
-/* ===== VARIABLES ===== */
+/* ================= VARIABLES ================= */
 
 :root {
   --black: #000;
@@ -8,7 +8,7 @@
 }
 
 
-/* ===== RESET ===== */
+/* ================= RESET ================= */
 
 * {
   box-sizing: border-box;
@@ -20,14 +20,14 @@
 body {
   background: var(--white);
   color: var(--black);
-  padding-top: 88px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-top: 88px;
 }
 
 
-/* ===== UI BUTTON ===== */
+/* ================= UI ================= */
 
 .ui-yellow {
   background: var(--yellow);
@@ -36,14 +36,11 @@ body {
   padding: 12px 20px;
   font-weight: 600;
   text-decoration: none;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
   border: none;
-
   transition: opacity 0.2s ease;
 }
 
@@ -52,25 +49,23 @@ body {
 }
 
 
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
 
 header {
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100%;
   height: 88px;
-
-  padding: 0 40px;
-
   background: var(--white);
+  padding: 0 40px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   z-index: 1000;
+  border-bottom: 1px solid #eee;
 }
 
 .header-left {
@@ -87,7 +82,7 @@ header {
 }
 
 
-/* ===== BURGER ===== */
+/* ================= BURGER ================= */
 
 .burger {
   width: 22px;
@@ -99,18 +94,18 @@ header {
 
   background: none;
   border: none;
-
   cursor: pointer;
 }
 
 .burger span {
-  height: 2px;
   width: 100%;
+  height: 2px;
   background: var(--black);
+  display: block;
 }
 
 
-/* ===== HEADER RIGHT ===== */
+/* ================= HEADER RIGHT ================= */
 
 .header-right {
   display: flex;
@@ -128,7 +123,7 @@ header {
 }
 
 
-/* ===== DROPDOWN ===== */
+/* ================= MOBILE MENU ================= */
 
 .mobile-menu {
   position: absolute;
@@ -136,13 +131,12 @@ header {
   left: 40px;
 
   background: var(--white);
-
   min-width: 220px;
 
   border-radius: 12px;
-  border: 1px solid #eaeaea;
+  border: 1px solid #eee;
 
-  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
 
   display: none;
   flex-direction: column;
@@ -171,17 +165,17 @@ header {
 }
 
 
-/* ===== HERO ===== */
+/* ================= HERO ================= */
 
 .hero {
+  background: var(--black);
+  color: var(--white);
+
   display: flex;
   align-items: center;
   gap: 100px;
 
   padding: 80px 40px;
-
-  background: var(--black);
-  color: var(--white);
 }
 
 .hero-content {
@@ -194,6 +188,7 @@ header {
 }
 
 .hero p {
+  font-size: 16px;
   margin-bottom: 32px;
   opacity: 0.9;
 }
@@ -203,7 +198,7 @@ header {
 }
 
 
-/* ===== SECTIONS ===== */
+/* ================= SECTIONS ================= */
 
 .section,
 .catalog,
@@ -218,7 +213,7 @@ main {
 }
 
 
-/* ===== PRODUCTS ===== */
+/* ================= PRODUCTS GRID ================= */
 
 .products {
   display: grid;
@@ -226,78 +221,59 @@ main {
   gap: 24px;
 }
 
+
+/* ================= PRODUCT CARD ================= */
+
 .product-card {
-  border: 1px solid #eaeaea;
-  padding: 16px;
   background: var(--white);
+  border: 1px solid #eee;
+
+  padding: 16px;
 
   display: flex;
   flex-direction: column;
+
+  border-radius: 12px;
 
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .product-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.15);
 }
 
+
+/* ================= PRODUCT IMAGE ================= */
+
 .product-image {
+  width: 100%;
+  height: 200px;
+
   background: var(--gray);
+
   margin-bottom: 16px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  color: #999;
-}
-
-
-/* Small cards */
-.product-image:not(.big) {
-  height: 200px;
-}
-
-
-/* ===== PRODUCT PAGE ===== */
-
-.product-layout {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 48px;
-}
-
-.product-photo {
-  position: sticky;
-  top: 120px;
-}
-
-/* Big product image */
-.product-image.big {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-
-  background: var(--gray);
-  border-radius: 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   overflow: hidden;
+  border-radius: 10px;
 }
 
-.product-image.big img {
+.product-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 
+/* ================= PRODUCT TEXT ================= */
+
 .product-title {
   font-size: 16px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .product-price {
@@ -305,49 +281,46 @@ main {
   margin-bottom: 12px;
 }
 
+
+/* ================= PRODUCT PAGE ================= */
+
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.product-photo .product-image {
+  height: 360px;
+}
+
 .big-price {
-  font-size: 28px;
-  margin-bottom: 20px;
+  font-size: 22px;
+  margin: 16px 0;
 }
 
 .product-desc {
-  line-height: 1.6;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  line-height: 1.5;
 }
 
 
-/* ===== BUY BUTTON ===== */
-
-.buy-btn {
-  width: 100%;
-  height: 48px;
-  font-size: 16px;
-}
-
-
-/* ===== INSTALLMENT BUTTON ===== */
+/* ================= INSTALLMENT ================= */
 
 .installment-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  display: block;
   width: 100%;
-  height: 48px;
 
+  padding: 12px;
   margin-bottom: 16px;
 
   background: var(--yellow);
   color: var(--black);
 
   border-radius: 12px;
-  border: none;
-
-  font-size: 16px;
+  text-align: center;
   font-weight: 600;
-
   text-decoration: none;
-  cursor: pointer;
 
   transition: opacity 0.2s ease;
 }
@@ -357,22 +330,7 @@ main {
 }
 
 
-/* ===== ANIMATION ===== */
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(40px);
-
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-/* ===== FOOTER ===== */
+/* ================= FOOTER ================= */
 
 footer {
   background: var(--black);
@@ -385,7 +343,21 @@ footer {
 }
 
 
-/* ===== MOBILE ===== */
+/* ================= FADE-IN ANIMATION ================= */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
 
@@ -401,7 +373,6 @@ footer {
     flex-direction: column;
     text-align: center;
     gap: 32px;
-
     padding: 60px 20px;
   }
 
@@ -431,8 +402,4 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .product-photo {
-    position: relative;
-    top: auto;
-  }
 }
