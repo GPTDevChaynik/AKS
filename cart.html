@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Кошик — AKS</title>
 
+  <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -22,17 +23,21 @@
 </header>
 
 
-<main class="section">
+<main>
 
-  <h1>Кошик</h1>
+  <section class="section">
 
-  <div id="cartItems"></div>
+    <h1>Кошик</h1>
 
-  <div id="cartTotal"></div>
+    <div id="cartList"></div>
 
-  <button id="checkoutBtn" class="ui-yellow">
-    Оформити замовлення
-  </button>
+    <h2 id="cartTotal"></h2>
+
+    <button class="ui-yellow" id="orderBtn">
+      Оформити замовлення
+    </button>
+
+  </section>
 
 </main>
 
@@ -42,6 +47,101 @@
 </footer>
 
 
-<script src="js/cart.js"></script>
+<script>
+
+function loadCart() {
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const list = document.getElementById("cartList");
+  const total = document.getElementById("cartTotal");
+
+  if (!cart.length) {
+
+    list.innerHTML = "<p>Кошик порожній 😔</p>";
+    total.innerHTML = "";
+    return;
+
+  }
+
+  let sum = 0;
+
+  list.innerHTML = "";
+
+  cart.forEach((item, index) => {
+
+    sum += item.price;
+
+    const row = document.createElement("div");
+
+    row.className = "product-card";
+
+    row.innerHTML = `
+
+      <div class="product-image">
+        <img src="${item.image}">
+      </div>
+
+      <div class="product-title">
+        ${item.name}
+      </div>
+
+      <div class="product-price">
+        ${item.price} ₴
+      </div>
+
+      <button class="ui-yellow"
+        onclick="removeFromCart(${index})">
+        Видалити
+      </button>
+
+    `;
+
+    list.appendChild(row);
+
+  });
+
+  total.innerHTML = "Разом: " + sum + " ₴";
+
+}
+
+
+// REMOVE
+
+function removeFromCart(i) {
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.splice(i, 1);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  loadCart();
+
+}
+
+
+// ORDER
+
+document.getElementById("orderBtn").onclick = () => {
+
+  if (!localStorage.getItem("cart")) {
+    alert("Кошик порожній");
+    return;
+  }
+
+  alert("Замовлення прийнято ✅");
+
+  localStorage.removeItem("cart");
+
+  loadCart();
+
+};
+
+
+loadCart();
+
+</script>
+
 </body>
 </html>
