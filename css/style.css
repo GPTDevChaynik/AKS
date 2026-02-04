@@ -198,6 +198,12 @@ main {
   background: var(--white);
   display: flex;
   flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
 }
 
 .product-image {
@@ -222,22 +228,6 @@ main {
   margin-bottom: 12px;
 }
 
-.product-btn {
-  margin-top: auto;
-  background: var(--black);
-  color: var(--white);
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 14px;
-  border-radius: 8px;
-}
-
-.product-btn:hover {
-  background: var(--yellow);
-  color: var(--black);
-}
-
 /* ===== FOOTER ===== */
 footer {
   background: var(--black);
@@ -245,6 +235,19 @@ footer {
   padding: 40px;
   font-size: 14px;
   margin-top: auto;
+}
+
+/* ===== FADE-IN ANIMATION ===== */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ===== MOBILE ===== */
@@ -286,29 +289,4 @@ footer {
   .header-right {
     gap: 16px;
   }
-   /* ===== ANIMATIONS ===== */
-
-/* Fade-in animation */
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  will-change: opacity, transform;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Product card hover */
-.product-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
-}
 }
