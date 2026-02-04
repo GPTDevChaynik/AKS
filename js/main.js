@@ -48,3 +48,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+// ===== LOAD PRODUCTS FROM GOOGLE SHEET =====
+
+async function loadProducts() {
+
+  const url = "https://opensheet.elk.sh/1o5t26He2DzTweYeleXOGiDjlU4Jkx896f95VUHVgS8U/Test+Sheet";
+
+  try {
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const container = document.querySelector(".products");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    data.forEach(product => {
+
+      const card = document.createElement("div");
+      card.className = "product-card fade-in";
+
+      card.innerHTML = `
+        <div class="product-image">
+          <img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+
+        <div class="product-title">
+          ${product.name}
+        </div>
+
+        <div class="product-price">
+          ${product.price} ₴
+        </div>
+
+        <a href="product.html?id=${product.id}" class="ui-yellow">
+          Переглянути товар
+        </a>
+      `;
+
+      container.appendChild(card);
+
+    });
+
+  } catch (e) {
+    console.error("Products load error:", e);
+  }
+
+}
+
+loadProducts();
