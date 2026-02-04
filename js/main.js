@@ -89,7 +89,13 @@ async function loadProducts() {
 
     container.innerHTML = "";
 
-    let products = data;
+   let products = data;
+
+// Only popular on homepage
+if (location.pathname.includes("index.html") || location.pathname === "/") {
+  products = data.filter(p => p.popular === "1");
+}
+    const data = await res.json();
 
     // Filter by category
     if (currentCategory) {
