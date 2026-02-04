@@ -242,3 +242,22 @@ function addToCart(id) {
     .catch(e => console.error("Cart error:", e));
 
 }
+function showMiniMessage(text) {
+
+  let msg = document.createElement("div");
+
+  msg.className = "cart-message";
+  msg.innerText = text;
+
+  document.body.appendChild(msg);
+
+  setTimeout(() => {
+    msg.classList.add("show");
+  }, 50);
+
+  setTimeout(() => {
+    msg.classList.remove("show");
+    setTimeout(()=>msg.remove(),300);
+  }, 2000);
+
+}
