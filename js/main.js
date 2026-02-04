@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ===== BURGER MENU =====
+  // ===== BURGER =====
 
   const burgerBtn = document.getElementById("burgerBtn");
   const mobileMenu = document.getElementById("mobileMenu");
@@ -23,44 +23,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // LOAD PRODUCTS
-  loadProducts();
+
+  // INIT
+
+  if (document.querySelector(".products")) {
+    loadProducts();
+  }
+
+  if (document.querySelector(".product-page")) {
+    loadSingleProduct();
+  }
 
 });
 
 
-// ===== FADE-IN INIT =====
+// ================= FADE =================
 
 function initFadeIn() {
 
-  const fadeItems = document.querySelectorAll(".fade-in");
+  const items = document.querySelectorAll(".fade-in");
 
-  if (!fadeItems.length) return;
+  if (!items.length) return;
 
   const observer = new IntersectionObserver((entries) => {
 
-    entries.forEach((entry) => {
-
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
       }
-
     });
 
-  }, {
-    threshold: 0.2
-  });
+  }, { threshold: 0.2 });
 
-  fadeItems.forEach(el => observer.observe(el));
+  items.forEach(el => observer.observe(el));
 }
 
 
-
-// ===== PRODUCTS LOADER =====
+// ================= LOAD ALL =================
 
 async function loadProducts() {
 
-  const url = "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
+  const url =
+    "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
 
   try {
 
@@ -73,25 +77,21 @@ async function loadProducts() {
 
     container.innerHTML = "";
 
-    data.forEach(product => {
+    data.forEach(p => {
 
       const card = document.createElement("div");
       card.className = "product-card fade-in";
 
       card.innerHTML = `
         <div class="product-image">
-          <img src="${product.image}" alt="${product.name}">
+          <img src="${p.image}" alt="${p.name}">
         </div>
 
-        <div class="product-title">
-          ${product.name}
-        </div>
+        <div class="product-title">${p.name}</div>
 
-        <div class="product-price">
-          ${product.price} ₴
-        </div>
+        <div class="product-price">${p.price} ₴</div>
 
-        <a href="product.html?id=${product.id}" class="ui-yellow">
+        <a href="product.html?id=${p.id}" class="ui-yellow">
           Переглянути товар
         </a>
       `;
@@ -100,11 +100,74 @@ async function loadProducts() {
 
     });
 
-    // IMPORTANT: enable animation AFTER load
     initFadeIn();
 
   } catch (e) {
-    console.error("Products load error:", e);
+    console.error(e);
   }
+}
 
+
+// ================= LOAD ONE =================
+
+async function loadSingleProduct() {
+
+  const url =
+    "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  if (!id) return;
+
+  try {
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const product = data.find(p => p.id === id);
+
+    if (!product) return;
+
+    const page = document.querySelector(".product-page");
+
+    page.innerHTML = `
+      <div class="product-layout">
+
+        <div class="product-photo">
+          <div class="product-image big">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
+        </div>
+
+        <div class="product-info fade-in">
+
+          <h1>${product.name}</h1>
+
+          <div class="product-price big-price">
+            ${product.price} ₴
+          </div>
+
+          <p class="product-desc">
+            ${product.description || "Опис скоро буде"}
+          </p>
+
+          <a href="#" class="installment-btn">
+            Покупка частинами
+          </a>
+
+          <a href="#" class="ui-yellow buy-btn">
+            Купити
+          </a>
+
+        </div>
+
+      </div>
+    `;
+
+    initFadeIn();
+
+  } catch (e) {
+    console.error(e);
+  }
 }
