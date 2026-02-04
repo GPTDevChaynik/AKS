@@ -25,14 +25,21 @@ if (burgerBtn && mobileMenu) {
 
 // ===== FADE-IN ANIMATION =====
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-});
+const fadeObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 150);
+      }
+    });
+  },
+  {
+    threshold: 0.15,
+  }
+);
 
-document.querySelectorAll('.fade-in').forEach(el => {
-  observer.observe(el);
+document.querySelectorAll('.fade-in').forEach((el) => {
+  fadeObserver.observe(el);
 });
