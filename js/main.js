@@ -23,37 +23,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
-  // ===== FADE-IN ANIMATION =====
-
-  const fadeItems = document.querySelectorAll(".fade-in");
-
-  if (fadeItems.length > 0) {
-
-    const fadeObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-      }
-    );
-
-    fadeItems.forEach((el) => {
-      fadeObserver.observe(el);
-    });
-  }
-
-
-  // ===== LOAD PRODUCTS FROM GOOGLE SHEET =====
-
+  // LOAD PRODUCTS
   loadProducts();
 
 });
+
+
+// ===== FADE-IN INIT =====
+
+function initFadeIn() {
+
+  const fadeItems = document.querySelectorAll(".fade-in");
+
+  if (!fadeItems.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+
+    });
+
+  }, {
+    threshold: 0.2
+  });
+
+  fadeItems.forEach(el => observer.observe(el));
+}
+
 
 
 // ===== PRODUCTS LOADER =====
@@ -99,6 +99,9 @@ async function loadProducts() {
       container.appendChild(card);
 
     });
+
+    // IMPORTANT: enable animation AFTER load
+    initFadeIn();
 
   } catch (e) {
     console.error("Products load error:", e);
