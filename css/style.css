@@ -374,23 +374,30 @@ footer {
 }
 
 /* Installment button */
+
 .installment-btn {
   display: block;
   width: 100%;
   text-align: center;
+
   padding: 12px;
   margin-bottom: 20px;
 
-  border: 2px solid var(--yellow);
+  background: var(--yellow);
+  color: var(--black) !important;
+
   border-radius: 12px;
+  border: none;
 
-  color: var(--black);
-  text-decoration: none;
   font-weight: 600;
+  text-decoration: none;
 
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
+.installment-btn:hover {
+  opacity: 0.9;
+}
 .installment-btn:hover {
   background: var(--yellow);
 }
