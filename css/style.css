@@ -225,7 +225,7 @@ main {
 /* ================= PRODUCT CARD ================= */
 
 .product-card {
-  background: var(--white);
+  background: #f4f4f4;
   border: 1px solid #eee;
 
   padding: 16px;
@@ -291,7 +291,12 @@ main {
 }
 
 .product-photo .product-image {
-  height: 360px;
+  height: 420px;
+  background: #fafafa;
+  padding: 20px;
+}
+.product-photo img {
+  object-fit: contain;
 }
 
 .big-price {
@@ -402,4 +407,16 @@ footer {
     grid-template-columns: 1fr;
   }
 
+}
+.buy-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+.product-page {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  max-width: 1100px;
+  margin: 40px auto;
 }
