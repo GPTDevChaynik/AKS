@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Чохол iPhone 15 — AKS</title>
+
+  <title>Товар — AKS</title>
 
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="css/style.css">
@@ -41,29 +42,28 @@
 
       <!-- IMAGE -->
       <div class="product-photo">
-        <div class="product-image big">
-          Фото товару
+        <div class="product-image big" id="productImage">
+          Завантаження...
         </div>
       </div>
 
       <!-- INFO -->
       <div class="product-info fade-in">
 
-        <h1>Чохол iPhone 15</h1>
+        <h1 id="productName">Завантаження...</h1>
 
-        <div class="product-price big-price">
-          799 ₴
+        <div class="product-price big-price" id="productPrice">
+          —
         </div>
 
-        <p class="product-desc">
-          Прозорий силіконовий чохол із захистом від подряпин та ударів.
-          Не жовтіє з часом. Підтримує бездротову зарядку.
+        <p class="product-desc" id="productDesc">
+          —
         </p>
 
         <!-- PART PAYMENT -->
         <a href="#" class="installment-btn">
-  Покупка частинами
-</a>
+          Покупка частинами
+        </a>
 
         <!-- ACTION -->
         <a href="#" class="ui-yellow buy-btn">
@@ -83,5 +83,67 @@
 </footer>
 
 <script src="js/main.js"></script>
+
+
+<!-- PRODUCT LOADER -->
+<script>
+
+async function loadProduct() {
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  if (!id) return;
+
+
+  const url = "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
+
+
+  try {
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const product = data.find(p => p.id === id);
+
+    if (!product) return;
+
+
+    // Title
+    document.title = product.name + " — AKS";
+
+
+    // Name
+    document.getElementById("productName").textContent = product.name;
+
+
+    // Price
+    document.getElementById("productPrice").textContent =
+      product.price + " ₴";
+
+
+    // Description
+    document.getElementById("productDesc").textContent =
+      product.description || "";
+
+
+    // Image
+    document.getElementById("productImage").innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+    `;
+
+
+  } catch (e) {
+
+    console.error("Product load error:", e);
+
+  }
+
+}
+
+loadProduct();
+
+</script>
+
 </body>
 </html>
