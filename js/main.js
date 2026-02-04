@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initBurger();
 
-  // Pages
   if (document.querySelector(".products")) {
     loadProducts();
   }
@@ -93,13 +92,13 @@ async function loadProducts() {
     let products = data;
 
 
-    // ===== ONLY POPULAR ON HOME =====
+    // ===== POPULAR ONLY ON HOME =====
     if (page === "" || page === "index.html") {
       products = products.filter(p => p.popular === "1");
     }
 
 
-    // ===== FILTER BY CATEGORY =====
+    // ===== CATEGORY FILTER =====
     if (category) {
       products = products.filter(p => p.category === category);
     }
@@ -233,15 +232,12 @@ function addToCart(id) {
 
     })
     .catch(e => console.error("Cart error:", e));
-}
-      localStorage.setItem("cart", JSON.stringify(cart));
-
-      alert("Додано в кошик ✅");
-
-    })
-    .catch(e => console.error("Cart error:", e));
 
 }
+
+
+// ================= MESSAGE =================
+
 function showMiniMessage(text) {
 
   let msg = document.createElement("div");
@@ -257,7 +253,7 @@ function showMiniMessage(text) {
 
   setTimeout(() => {
     msg.classList.remove("show");
-    setTimeout(()=>msg.remove(),300);
+    setTimeout(() => msg.remove(), 300);
   }, 2000);
 
 }
