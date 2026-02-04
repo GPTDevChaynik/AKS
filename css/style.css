@@ -364,3 +364,33 @@ footer {
   }
 
 }
+/* ===== PRODUCT FIX ===== */
+
+/* More square image */
+.product-image.big {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  max-height: 360px;
+}
+
+/* Installment button */
+.installment-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 12px;
+  margin-bottom: 20px;
+
+  border: 2px solid var(--yellow);
+  border-radius: 12px;
+
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
+}
+
+.installment-btn:hover {
+  background: var(--yellow);
+}
