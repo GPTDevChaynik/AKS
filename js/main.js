@@ -1,3 +1,4 @@
+alert("JS works");
 // ===== BURGER MENU =====
 
 const burgerBtn = document.getElementById('burgerBtn');
