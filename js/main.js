@@ -177,9 +177,9 @@ async function loadSingleProduct() {
             Покупка частинами
           </a>
 
-          <a href="#" class="ui-yellow buy-btn">
-            Купити
-          </a>
+          <button class="ui-yellow buy-btn" onclick="addToCart('${product.id}')">
+  Купити
+</button>
 
         </div>
 
@@ -192,5 +192,34 @@ async function loadSingleProduct() {
   } catch(e){
     console.error(e);
   }
+
+}
+function addToCart(id) {
+
+  const url =
+   "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
+
+  fetch(url)
+    .then(r=>r.json())
+    .then(data=>{
+
+      const product = data.find(p=>p.id===id);
+
+      if(!product) return;
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      cart.push({
+        id: product.id,
+        name: product.name,
+        price: Number(product.price),
+        image: product.image
+      });
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert("Додано в кошик ✅");
+
+    });
 
 }
