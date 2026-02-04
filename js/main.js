@@ -1,83 +1,102 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ===== BURGER =====
+  initBurger();
 
-  const burgerBtn = document.getElementById("burgerBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const headerLeft = document.querySelector(".header-left");
+  const productsBox = document.querySelector(".products");
+  const productPage = document.querySelector(".product-page");
 
-  if (burgerBtn && mobileMenu) {
-
-    burgerBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      mobileMenu.classList.toggle("active");
-    });
-
-    document.addEventListener("click", (e) => {
-      if (
-        !mobileMenu.contains(e.target) &&
-        !headerLeft.contains(e.target)
-      ) {
-        mobileMenu.classList.remove("active");
-      }
-    });
-  }
-
-
-  // INIT
-
-  if (document.querySelector(".products")) {
+  if (productsBox) {
     loadProducts();
   }
 
-  if (document.querySelector(".product-page")) {
+  if (productPage) {
     loadSingleProduct();
   }
 
 });
 
 
+// ================= BURGER =================
+
+function initBurger() {
+
+  const burger = document.getElementById("burgerBtn");
+  const menu = document.getElementById("mobileMenu");
+  const left = document.querySelector(".header-left");
+
+  if (!burger || !menu) return;
+
+  burger.addEventListener("click", e => {
+    e.stopPropagation();
+    menu.classList.toggle("active");
+  });
+
+  document.addEventListener("click", e => {
+
+    if (!menu.contains(e.target) && !left.contains(e.target)) {
+      menu.classList.remove("active");
+    }
+
+  });
+}
+
+
 // ================= FADE =================
 
-function initFadeIn() {
+function initFade() {
 
   const items = document.querySelectorAll(".fade-in");
 
   if (!items.length) return;
 
-  const observer = new IntersectionObserver((entries) => {
+  const obs = new IntersectionObserver((entries)=>{
 
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add("visible");
       }
     });
 
-  }, { threshold: 0.2 });
+  },{threshold:0.2});
 
-  items.forEach(el => observer.observe(el));
+  items.forEach(i=>obs.observe(i));
 }
 
 
-// ================= LOAD ALL =================
+// ================= LOAD PRODUCTS =================
 
 async function loadProducts() {
 
   const url =
-    "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
+   "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
+
+  const container = document.querySelector(".products");
+
+  if (!container) return;
+
+  const page = location.pathname.split("/").pop();
+
+  let currentCategory = null;
+
+  if (page === "cases.html") currentCategory = "cases";
+  if (page === "cables.html") currentCategory = "cables";
+  if (page === "chargers.html") currentCategory = "chargers";
 
   try {
 
     const res = await fetch(url);
     const data = await res.json();
 
-    const container = document.querySelector(".products");
-
-    if (!container) return;
-
     container.innerHTML = "";
 
-    data.forEach(p => {
+    let products = data;
+
+    // Filter by category
+    if (currentCategory) {
+      products = data.filter(p => p.category === currentCategory);
+    }
+
+    products.forEach(p => {
 
       const card = document.createElement("div");
       card.className = "product-card fade-in";
@@ -100,22 +119,23 @@ async function loadProducts() {
 
     });
 
-    initFadeIn();
+    initFade();
 
-  } catch (e) {
+  } catch(e){
     console.error(e);
   }
+
 }
 
 
-// ================= LOAD ONE =================
+// ================= SINGLE PRODUCT =================
 
 async function loadSingleProduct() {
 
   const url =
-    "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
+   "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
 
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(location.search);
   const id = params.get("id");
 
   if (!id) return;
@@ -125,18 +145,19 @@ async function loadSingleProduct() {
     const res = await fetch(url);
     const data = await res.json();
 
-    const product = data.find(p => p.id === id);
+    const product = data.find(p=>p.id===id);
 
-    if (!product) return;
+    if(!product) return;
 
     const page = document.querySelector(".product-page");
 
     page.innerHTML = `
+
       <div class="product-layout">
 
         <div class="product-photo">
           <div class="product-image big">
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${product.image}">
           </div>
         </div>
 
@@ -163,11 +184,13 @@ async function loadSingleProduct() {
         </div>
 
       </div>
+
     `;
 
-    initFadeIn();
+    initFade();
 
-  } catch (e) {
+  } catch(e){
     console.error(e);
   }
+
 }
