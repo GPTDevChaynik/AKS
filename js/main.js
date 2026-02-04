@@ -229,6 +229,13 @@ function addToCart(id) {
 
       localStorage.setItem("cart", JSON.stringify(cart));
 
+      showMiniMessage("Товар додано в кошик");
+
+    })
+    .catch(e => console.error("Cart error:", e));
+}
+      localStorage.setItem("cart", JSON.stringify(cart));
+
       alert("Додано в кошик ✅");
 
     })
