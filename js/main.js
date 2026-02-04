@@ -2,18 +2,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initBurger();
 
-  const productsBox = document.querySelector(".products");
-  const productPage = document.querySelector(".product-page");
-
-  if (productsBox) {
+  // Pages
+  if (document.querySelector(".products")) {
     loadProducts();
   }
 
-  if (productPage) {
+  if (document.querySelector(".product-page")) {
     loadSingleProduct();
   }
 
 });
+
+
+// ================= CONFIG =================
+
+const SHEET_URL =
+  "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
 
 
 // ================= BURGER =================
@@ -38,6 +42,7 @@ function initBurger() {
     }
 
   });
+
 }
 
 
@@ -49,17 +54,18 @@ function initFade() {
 
   if (!items.length) return;
 
-  const obs = new IntersectionObserver((entries)=>{
+  const observer = new IntersectionObserver((entries) => {
 
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add("visible");
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
       }
     });
 
-  },{threshold:0.2});
+  }, { threshold: 0.2 });
 
-  items.forEach(i=>obs.observe(i));
+  items.forEach(el => observer.observe(el));
+
 }
 
 
@@ -67,40 +73,41 @@ function initFade() {
 
 async function loadProducts() {
 
-  const url =
-   "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
-
   const container = document.querySelector(".products");
 
   if (!container) return;
 
   const page = location.pathname.split("/").pop();
 
-  let currentCategory = null;
+  let category = null;
 
-  if (page === "cases.html") currentCategory = "cases";
-  if (page === "cables.html") currentCategory = "cables";
-  if (page === "chargers.html") currentCategory = "chargers";
+  if (page === "cases.html") category = "cases";
+  if (page === "cables.html") category = "cables";
+  if (page === "chargers.html") category = "chargers";
 
   try {
 
-    const res = await fetch(url);
+    const res = await fetch(SHEET_URL);
     const data = await res.json();
+
+    let products = data;
+
+
+    // ===== ONLY POPULAR ON HOME =====
+    if (page === "" || page === "index.html") {
+      products = products.filter(p => p.popular === "1");
+    }
+
+
+    // ===== FILTER BY CATEGORY =====
+    if (category) {
+      products = products.filter(p => p.category === category);
+    }
+
+
+    // ===== RENDER =====
 
     container.innerHTML = "";
-
-   let products = data;
-
-// Only popular on homepage
-if (location.pathname.includes("index.html") || location.pathname === "/") {
-  products = data.filter(p => p.popular === "1");
-}
-    const data = await res.json();
-
-    // Filter by category
-    if (currentCategory) {
-      products = data.filter(p => p.category === currentCategory);
-    }
 
     products.forEach(p => {
 
@@ -127,8 +134,8 @@ if (location.pathname.includes("index.html") || location.pathname === "/") {
 
     initFade();
 
-  } catch(e){
-    console.error(e);
+  } catch (e) {
+    console.error("Load products error:", e);
   }
 
 }
@@ -138,9 +145,6 @@ if (location.pathname.includes("index.html") || location.pathname === "/") {
 
 async function loadSingleProduct() {
 
-  const url =
-   "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
-
   const params = new URLSearchParams(location.search);
   const id = params.get("id");
 
@@ -148,12 +152,12 @@ async function loadSingleProduct() {
 
   try {
 
-    const res = await fetch(url);
+    const res = await fetch(SHEET_URL);
     const data = await res.json();
 
-    const product = data.find(p=>p.id===id);
+    const product = data.find(p => p.id === id);
 
-    if(!product) return;
+    if (!product) return;
 
     const page = document.querySelector(".product-page");
 
@@ -163,7 +167,7 @@ async function loadSingleProduct() {
 
         <div class="product-photo">
           <div class="product-image big">
-            <img src="${product.image}">
+            <img src="${product.image}" alt="${product.name}">
           </div>
         </div>
 
@@ -183,35 +187,36 @@ async function loadSingleProduct() {
             Покупка частинами
           </a>
 
-          <button class="ui-yellow buy-btn" onclick="addToCart('${product.id}')">
-  Купити
-</button>
+          <button class="ui-yellow buy-btn"
+            onclick="addToCart('${product.id}')">
+            Купити
+          </button>
 
         </div>
 
       </div>
-
     `;
 
     initFade();
 
-  } catch(e){
-    console.error(e);
+  } catch (e) {
+    console.error("Load product error:", e);
   }
 
 }
+
+
+// ================= CART =================
+
 function addToCart(id) {
 
-  const url =
-   "https://opensheet.elk.sh/1pDcBBezffry2rLCK6JcfCjsa1Ixoc-cimv-KiO8WAYM/products1";
+  fetch(SHEET_URL)
+    .then(r => r.json())
+    .then(data => {
 
-  fetch(url)
-    .then(r=>r.json())
-    .then(data=>{
+      const product = data.find(p => p.id === id);
 
-      const product = data.find(p=>p.id===id);
-
-      if(!product) return;
+      if (!product) return;
 
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -226,6 +231,7 @@ function addToCart(id) {
 
       alert("Додано в кошик ✅");
 
-    });
+    })
+    .catch(e => console.error("Cart error:", e));
 
 }
